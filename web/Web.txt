@@ -1,0 +1,92 @@
+-------index.html-----------
+<!DOCTYPE html>
+<head>
+    <title>XYZ Company - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">XYZ Company</div>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="form.html">Form</a>
+    </div>
+    <div class="content">
+        <h2>Welcome to XYZ Company</h2>
+        <p>We provide the best solutions for your business needs.</p>
+    </div>
+</body>
+</html>
+
+
+-------form.html-----------
+<!DOCTYPE html>
+<head>
+    <title>XYZ Company - Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">XYZ Company</div>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="form.html">Form</a>
+    </div>
+    <div class="content">
+        <h2>Enter Your Details</h2>
+        <form id="userForm">
+            <label>Name:</label><br>
+            <input type="text" id="name" required><br><br>
+
+            <label>Phone:</label><br>
+            <input type="text" id="phone" required><br><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+-------process.html-----------
+<!DOCTYPE html>
+<head>
+    <title>XYZ Company - Submitted Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">XYZ Company</div>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="form.html">Form</a>
+    </div>
+    <div class="content">
+        <h2>You entered the following:</h2>
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+    </div>
+
+    <script>
+        // Retrieve data from sessionStorage
+        document.getElementById("displayName").innerText = sessionStorage.getItem("name") || "Not provided";
+        document.getElementById("displayPhone").innerText = sessionStorage.getItem("phone") || "Not provided";
+    </script>
+</body>
+</html>
+
+
+-------script.js-----------
+document.getElementById("userForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form from actually submitting
+
+    // Get user input
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+
+    // Store data in sessionStorage
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("phone", phone);
+
+    // Redirect to process.html
+    window.location.href = "process.html";
+});
